@@ -23,8 +23,8 @@ public class Rcsp{
 		//Constructor labelConstructor = Label.class.getConstructor(int);
 		
 		// Initialize the first label with resources		
-		/*Label currentLabel = new Label(labelNumber++);
-		Label newLabel;*/
+		Label currentLabel = new Label(labelNumber++);
+		Label newLabel;
 		
 	}
 }

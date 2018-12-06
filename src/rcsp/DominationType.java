@@ -1,0 +1,7 @@
+package rcsp;
+
+public enum DominationType {
+	FIRSTLABELDOMINATED,
+	SECONDLABELDOMINATED,
+	NOLABELDOMINATED
+}

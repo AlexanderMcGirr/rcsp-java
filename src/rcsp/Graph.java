@@ -18,12 +18,14 @@ public class Graph{
 	
 	// Empty constructor for now
 	public Graph() {
+		// Initialize all these empty maps, so they can be used when adding parts of the graph.
 		vertexMap = new HashMap<>();
-		edgeMap = new HashMap<>();
-		adjacencyList = new HashMap<>();
-		
 		vertexResources = new HashMap<>();
+		
+		edgeMap = new HashMap<>();
 		edgeConsumption = new HashMap<>();
+		
+		adjacencyList = new HashMap<>();
 	}
 	
 	public Vertex addVertex(String name) {
@@ -32,15 +34,25 @@ public class Graph{
 		vertexMap.put(name,newVertex);
 		ArrayList<String> succList = new ArrayList<>();
 		
+		// Create empty list of Labels for vertex attributes and map it to current vertex.
+		VertexAttributes attr = new VertexAttributes();
+		vertexResources.put(newVertex, attr);
+		
 		// This creates an empty list for strings for each vertex
 		adjacencyList.put(name, succList);
 		return newVertex;
 	}
 	
-	public void addEdge(Vertex s, Vertex t) {		
-		edgeMap.put(Arrays.asList(s.ID, t.ID),new Edge(s,t));
+	public void addEdge(Vertex s, Vertex t) {
+		Edge newEdge = new Edge(s,t);
+		edgeMap.put(Arrays.asList(s.ID, t.ID),newEdge);
 		List<String>succList = adjacencyList.get(s.ID);
 		succList.add(t.ID);
+		
+		// Now make an Edge attribute and add it to the map.
+		// The attributes are set to 0.
+		EdgeAttributes attr = new EdgeAttributes();
+		edgeConsumption.put(newEdge, attr);
 	}
 	
 	public void addEdge(String s, String t) {
@@ -48,11 +60,8 @@ public class Graph{
 		Vertex source = getVertex(s);
 		Vertex sink = getVertex(t);
 		
-		// Now add edge to vertexMap
-		edgeMap.put(Arrays.asList(s, t), new Edge(source,sink));		
-		// Add to adjacency list
-		List<String>succList = adjacencyList.get(s);
-		succList.add(t);
+		// Now use overloaded function to deal with the rest.
+		addEdge(source,sink);	
 	}
 	
 	public Vertex getVertex(String v) {
