@@ -1,5 +1,5 @@
 package rcsp;
 
 public interface ResourceExtensionFunction {
-	public LabelFeasibility ref(Label first, Edge edge);
+	public LabelFeasibility ref(Graph g, Label first, Edge edge, int labelNumber);
 }

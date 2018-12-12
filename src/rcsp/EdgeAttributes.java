@@ -9,4 +9,14 @@ public class EdgeAttributes {
 		cost = 0;
 		timeCost = 0;
 	}
+	
+	public EdgeAttributes(int c, int time) {
+		cost = c;
+		timeCost = time;
+	}
+	
+	public void set(int c, int time) {
+		cost = c;
+		timeCost = time;
+	}
 }
